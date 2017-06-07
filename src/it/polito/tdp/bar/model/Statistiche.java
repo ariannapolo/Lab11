@@ -54,7 +54,7 @@ public class Statistiche {
 				break;
 			case USCITA_GRUPPO_CLIENTI:
 				tavoli.get(e.getGruppo().getIdTavolo()).setLibero(true);
-				System.out.println("Clienti usciti, tavolo libero "+tavoli.get(e.getGruppo().getIdTavolo()).getIdTavolo());
+				System.out.println("Tempo: "+e.getTime()+" Clienti usciti, tavolo libero "+tavoli.get(e.getGruppo().getIdTavolo()).getIdTavolo());
 				break;
 			}
 			
@@ -83,22 +83,22 @@ public class Statistiche {
 			//clientiTot+= g.getNumPersone();
 			g.setIdTavolo(tMin.getIdTavolo());
 			queue.add(new Event(e.getTime()+g.getDurata(),g,EventType.USCITA_GRUPPO_CLIENTI));
-			System.out.println("Gruppo arrivato da "+g.getNumPersone()+" persone. Seduti al tavolo "+tMin.getIdTavolo());
+			System.out.println("Tempo: "+e.getTime()+" Gruppo arrivato da "+g.getNumPersone()+" persone. Seduti al tavolo "+tMin.getIdTavolo());
 						
 		}else{
 			//tavolo non trovato: vedo la tolleranza del gruppo e decido se metterli al bancone
 			if(g.getTolleranza()==0){
 				clientiInsoddisfatti+=g.getNumPersone();
-				System.out.println("Gruppo arrivato da "+g.getNumPersone()+" persone. Insoddisfatti");
+				System.out.println("Tempo: "+e.getTime()+" Gruppo arrivato da "+g.getNumPersone()+" persone. Insoddisfatti");
 			}else{
 				if(Math.random()<=g.getTolleranza()){
 					//al bancone
 					clientiSoddisfatti+= g.getNumPersone();
-					System.out.println("Gruppo arrivato da "+g.getNumPersone()+" persone. Al bancone");
+					System.out.println("Tempo: "+e.getTime()+" Gruppo arrivato da "+g.getNumPersone()+" persone. Al bancone");
 				}else{
 					//insoddisfatti
 					clientiInsoddisfatti+= g.getNumPersone();
-					System.out.println("Gruppo arrivato da "+g.getNumPersone()+" persone. Insoddisfatti");
+					System.out.println("Tempo: "+e.getTime()+" Gruppo arrivato da "+g.getNumPersone()+" persone. Insoddisfatti");
 				}
 			}
 		}

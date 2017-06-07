@@ -7,7 +7,8 @@ public class TestStatistiche {
 		Statistiche s = new Statistiche();
     	int time = 0;
     	for(int i=0; i<2000; i++){
-    		s.addGruppo(time+(int)((Math.random()+1)*10));
+    		time = time+(int)((Math.random()+1)*10);
+    		s.addGruppo(time);
     	}
     	s.run();
     	System.out.println("Numero clienti totali "+s.getClientiTot());
